@@ -1,9 +1,13 @@
 import Link from "next/link";
+import isLoggedIn from "../boo";
+import { redirect } from "next/navigation";
 
 type Props = { children: React.ReactNode };
 
 export default function RootLayout({ children }: Props) {
-	return (
+	return isLoggedIn ? (
+		redirect("/")
+	) : (
 		<main>
 			welcome layout
 			{children}
