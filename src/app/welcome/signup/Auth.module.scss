@@ -1,0 +1,94 @@
+@import "../../../scss";
+
+.container {
+	z-index: 11;
+}
+.titleSignup {
+	font-weight: 600;
+	font-size: 28px;
+	line-height: calc(32 / 28);
+
+	margin-top: 240px;
+
+	@include tablet {
+		font-size: 40px;
+		text-align: left;
+		margin-top: 204px;
+	}
+}
+
+.form {
+	max-width: 335px;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	margin-top: 28px;
+	text-align: center;
+
+	@include tablet {
+		max-width: 400px;
+	}
+}
+
+.label {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: calc(18 / 14);
+	color: rgba(243, 243, 243, 0.5);
+
+	padding: 18px 24px;
+
+	border-radius: 200px;
+	border-width: 1px;
+	border-color: rgba(243, 243, 243, 0.2);
+	background-color: transparent;
+
+	@include tablet {
+		font-size: 17px;
+		padding: 14px 24px;
+	}
+
+	&:focus {
+		border-color: rgba(243, 243, 243, 0.5);
+		color: rgba(243, 243, 243, 1);
+	}
+}
+
+.btnSignup {
+	font-size: 16px;
+	line-height: calc(18 / 16);
+	font-weight: 600;
+	white-space: nowrap;
+
+	background: #f3f3f3;
+	color: #161f37;
+	padding: 18px 140px;
+	margin-top: 26px;
+	border-radius: 42px;
+	border: 1px solid rgba(243, 243, 243, 0.2);
+	cursor: pointer;
+	transition: background $transitionDuration $transitionTimingFunction;
+
+	@include tablet {
+		padding: 18px 170px;
+	}
+
+	&:hover {
+		background: transparent;
+		color: #f3f3f3;
+	}
+}
+
+.linkSignUp {
+	font-size: 14px;
+	line-height: calc(18 / 14);
+	font-weight: 600;
+	text-align: center;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+.error {
+	color: red;
+	font-size: 10px;
+}
