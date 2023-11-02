@@ -61,7 +61,7 @@ export default function Header() {
 		<>
 			<header className={css.header}>
 				<div className={css.header_wrapper}>
-					{/* <Logo /> */}
+					<Logo />
 					{isDesktop && <Nav />}
 					{/* <UserMenu /> */}
 					{/* <BurgerMenu toggleMenu={toggleMenu} isOpenBurgerMenu={isOpenBurgerMenu} isDesktop={isDesktop} /> */}
