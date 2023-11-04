@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
 	title: "DrinkMaster",
@@ -11,9 +12,24 @@ export default function RootLayout({ children }: Props) {
 	return (
 		<html lang="en">
 			<body>
-				RootLayout
+				<header>
+					<Link href="/welcome">welcome</Link>
+					<br />
+					<Link href="/add">add</Link>
+					<br />
+					<Link href="/drinks">drinks</Link>
+					<br />
+					<Link href="/favorite">favorite</Link>
+					<br />
+					<Link href="/my">my</Link>
+				</header>
 				{children}
 			</body>
 		</html>
 	);
 }
+
+//! export default function Layout({ dashboard, login }: { dashboard: React.ReactNode; login: React.ReactNode }) {
+// 	const isLoggedIn = getUser();
+// 	return isLoggedIn ? dashboard : login;
+// }
