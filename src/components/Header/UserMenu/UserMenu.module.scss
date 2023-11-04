@@ -1,0 +1,56 @@
+@import "../../../../scss/";
+
+.user_group {
+	position: relative;
+	margin-right: 14px;
+
+	@include tablet {
+		margin-right: 24px;
+	}
+
+	@include desktop {
+		margin-right: 0;
+	}
+}
+
+.button {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	border: none;
+	outline: none;
+	background-color: transparent;
+
+	transition-property: transform;
+	transition-duration: $transitionDuration;
+	transition-timing-function: $transitionTimingFunction;
+
+	@include tablet {
+		gap: 14px;
+	}
+
+	&:hover,
+	&:focus {
+		transform: scale(1.1);
+	}
+}
+
+.user_icon {
+	border-radius: 50%;
+	width: 32px;
+	height: 32px;
+
+	@include tablet {
+		width: 44px;
+		height: 44px;
+	}
+}
+
+.username {
+	font-size: $mainFontSize;
+	color: $mainFontColor;
+
+	@include tablet {
+		font-size: $SecondaryFontSize;
+	}
+}
