@@ -36,5 +36,5 @@ const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-export const AppDispatch = store.dispatch;
+
 export default store;
