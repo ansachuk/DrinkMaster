@@ -1,17 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
+// import { useLocation } from "react-router-dom";
+
 import Logo from "../Logo/Logo";
 import Nav from "../Nav/Nav";
+import UserMenu from "./UserMenu/UserMenu";
 
-// import { useLocation } from "react-router-dom";
 import css from "./Header.module.scss";
 
 export default function Header() {
 	const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1280);
 	const [isOpenBurgerMenu, setisOpenBurgerMenu] = useState(false);
 
-	const location = useLocation();
+	// const location = useLocation();
 
 	const toggleMenu = () => setisOpenBurgerMenu(!isOpenBurgerMenu);
 
@@ -22,14 +24,14 @@ export default function Header() {
 		}
 	};
 
-	const handlerBackdropClicks = e => {
-		const backdrop = e.target.closest("#burger_menu") === null && e.target.closest("#navigation") === null;
+	const handlerBackdropClicks = (e: MouseEvent) => {
+		const backdrop = (e.target as HTMLDivElement).closest("#burger_menu") === null && (e.target as HTMLDivElement).closest("#navigation") === null;
 		if (backdrop) {
 			setisOpenBurgerMenu(false);
 		}
 	};
 
-	const handlerEscClick = e => {
+	const handlerEscClick = (e: KeyboardEvent) => {
 		const target = e.key === "Escape";
 		if (target) {
 			setisOpenBurgerMenu(false);
@@ -52,16 +54,17 @@ export default function Header() {
 
 	useEffect(() => {
 		setisOpenBurgerMenu(false);
-	}, [location.pathname]);
+	}, []);
+	//? }, [location.pathname]);
 
 	return (
 		<>
 			<header className={css.header}>
 				<div className={css.header_wrapper}>
-					<Logo />
+					{/* <Logo /> */}
 					{isDesktop && <Nav />}
-					<UserMenu />
-					<BurgerMenu toggleMenu={toggleMenu} isOpenBurgerMenu={isOpenBurgerMenu} isDesktop={isDesktop} />
+					{/* <UserMenu /> */}
+					{/* <BurgerMenu toggleMenu={toggleMenu} isOpenBurgerMenu={isOpenBurgerMenu} isDesktop={isDesktop} /> */}
 				</div>
 			</header>
 		</>

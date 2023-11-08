@@ -1,5 +1,5 @@
 import Link from "next/link";
-import icons from "/icons.svg";
+import icons from "/images/icons.svg";
 import css from "./Logo.module.scss";
 
 export default function Logo() {

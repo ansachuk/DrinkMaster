@@ -5,19 +5,19 @@ import EditUserModal from "./EditProfileModal/EditProfileModal";
 import LogoutOptions from "./LogoutOptions/LogoutOptions";
 // import { useSelector } from "react-redux";
 // import { selectUser } from "../../../../redux/selectors/authSelectors";
-import defaultUserImage from "../../../../images/static/user/user.jpg";
+// import defaultUserImage from "../../../../images/static/user/user.jpg";
 
 import css from "./UserMenu.module.scss";
 
 export default function UserMenu() {
-	// const { name, avatarURL } = useSelector(selectUser);
+	// const { name: username, avatarURL } = useSelector(selectUser);
 
 	const [isOpenDropdown, setIsOpenDropdown] = useState(false);
 	const [isOpenLogout, setIsOpenLogout] = useState(false);
 	const [isOpenEditProfile, setIsOpenEditProfile] = useState(false);
 	const [transitionTimeout, setTransitionTimeout] = useState(250);
 
-	const nodeRef = createRef(null);
+	const nodeRef = createRef<HTMLElement>();
 
 	const handlerLogoutDropdownClick = () => setIsOpenLogout(!isOpenLogout);
 
@@ -34,11 +34,27 @@ export default function UserMenu() {
 		setIsOpenEditProfile(false);
 	};
 
-	const handlerBackdropClicks = e => {
-		const backdrop = e.target.closest("#user_group") === null;
-		const esc = e.key === "Escape";
+	const handlerBackdropClicks = (e: MouseEvent) => {
+		const backdrop = (e.target as HTMLDivElement).closest("#user_group") === null;
+
 		setTransitionTimeout(250);
-		if (backdrop || esc) {
+		if (backdrop) {
+			if (isOpenEditProfile || isOpenLogout) {
+				setTransitionTimeout(0);
+			} else {
+				setTransitionTimeout(250);
+			}
+			setIsOpenDropdown(false);
+			setIsOpenEditProfile(false);
+			setIsOpenLogout(false);
+		}
+	};
+
+	const handlerEscKeyDown = (e: KeyboardEvent) => {
+		const esc = e.key === "Escape";
+
+		setTransitionTimeout(250);
+		if (esc) {
 			if (isOpenEditProfile || isOpenLogout) {
 				setTransitionTimeout(0);
 			} else {
@@ -53,12 +69,12 @@ export default function UserMenu() {
 	useEffect(() => {
 		if (isOpenDropdown) {
 			window.addEventListener("click", handlerBackdropClicks);
-			window.addEventListener("keydown", handlerBackdropClicks);
+			window.addEventListener("keydown", handlerEscKeyDown);
 		}
 
 		return () => {
 			window.removeEventListener("click", handlerBackdropClicks);
-			window.removeEventListener("keydown", handlerBackdropClicks);
+			window.removeEventListener("keydown", handlerEscKeyDown);
 		};
 	});
 
@@ -66,7 +82,7 @@ export default function UserMenu() {
 		<div className={css.user_group} id="user_group">
 			<button onClick={handlerUserDropdownClick} className={css.button}>
 				<img src={avatarURL || defaultUserImage} alt="User photo" className={css.user_icon} />
-				<span className={css.username}>{name}</span>
+				<span className={css.username}>{username}</span>
 			</button>
 
 			<CSSTransition
@@ -78,7 +94,7 @@ export default function UserMenu() {
 				onEnter={() => setIsOpenDropdown(true)}
 				onExited={() => setIsOpenDropdown(false)}
 			>
-				<UserDropdown ref={nodeRef} handlerEditProfileClick={handlerEditProfileClick} handlerLogoutDropdownClick={handlerLogoutDropdownClick} />
+				{/* <UserDropdown ref={nodeRef} handlerEditProfileClick={handlerEditProfileClick} handlerLogoutDropdownClick={handlerLogoutDropdownClick} /> */}
 			</CSSTransition>
 
 			<CSSTransition
@@ -90,7 +106,7 @@ export default function UserMenu() {
 				onEnter={() => setIsOpenEditProfile(true)}
 				onExited={() => setIsOpenEditProfile(false)}
 			>
-				<EditUserModal ref={nodeRef} handlerEditProfileClick={handlerEditProfileClick} handlerUserDropdownClick={handlerUserDropdownClick} />
+				{/* <EditUserModal ref={nodeRef} handlerEditProfileClick={handlerEditProfileClick} handlerUserDropdownClick={handlerUserDropdownClick} /> */}
 			</CSSTransition>
 
 			<CSSTransition
@@ -102,7 +118,7 @@ export default function UserMenu() {
 				onEnter={() => setIsOpenLogout(true)}
 				onExited={() => setIsOpenLogout(false)}
 			>
-				<LogoutOptions ref={nodeRef} handlerLogoutDropdownClick={handlerLogoutDropdownClick} />
+				{/* <LogoutOptions ref={nodeRef} handlerLogoutDropdownClick={handlerLogoutDropdownClick} /> */}
 			</CSSTransition>
 		</div>
 	);
