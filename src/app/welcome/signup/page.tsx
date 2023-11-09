@@ -6,7 +6,7 @@ import css from "./Auth.module.scss";
 // import { useDispatch } from "react-redux";
 // import { signup } from "../../../redux/operations/authOperations";
 import { schemaSignup } from "@/schemas/schema";
-import { Signup } from "@/@types/authTypes";
+import { Signup } from "@/@types/AuthTypes";
 import Link from "next/link";
 
 export default function SignupForm() {

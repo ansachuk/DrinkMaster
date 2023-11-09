@@ -6,7 +6,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 
 // import { login } from "../../../redux/operations/authOperations";
 import { schemaSignin } from "@/schemas/schema";
-import { SignIn } from "@/@types/authTypes";
+import { SignIn } from "@/@types/AuthTypes";
 
 import css from "../signup/Auth.module.scss";
 
