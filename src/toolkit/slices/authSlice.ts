@@ -1,13 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { login, signup, logout, refresh, update, subscribe } from "../operations/authOperations";
 import { handlePending, handleRejected, handleFullfilled } from "../utils";
-import { AuthState, LoginRespoce } from "@/@types/authTypes";
+import { AuthState, LoginRespoce, SignupResponce, UpdateResponce, User } from "@/@types/authTypes";
 
 const initialState: AuthState = {
 	user: {
 		name: "",
 		email: "",
-		id: "",
+		// id: "",
 		avatarURL: "",
 		subscribe: false,
 	},
@@ -17,9 +17,9 @@ const initialState: AuthState = {
 	error: null,
 };
 
-const handleSignUp = (state: AuthState, { payload }) => {
-	state.user = { ...state.user, ...payload };
-	state.accessToken = payload.token;
+const handleSignUp = (state: AuthState, action: PayloadAction<SignupResponce>) => {
+	state.user = { ...state.user, ...action.payload };
+	state.accessToken = action.payload.token;
 	handleFullfilled(state);
 };
 
@@ -32,21 +32,21 @@ const handleLogin = (state: AuthState, action: PayloadAction<LoginRespoce>) => {
 	handleFullfilled(state);
 };
 
-const handleUpdate = (state: AuthState, { payload }) => {
-	state.user.avatarURL = payload.avatarURL || null;
-	state.user.name = payload.name || null;
+const handleUpdate = (state: AuthState, action: PayloadAction<UpdateResponce>) => {
+	state.user.avatarURL = action.payload.avatarURL || "";
+	state.user.name = action.payload.name || "";
 
 	handleFullfilled(state);
 };
 
-const handleSubcribe = (state: AuthState, { payload }) => {
-	state.user.subscribe = payload;
+const handleSubcribe = (state: AuthState, action: PayloadAction<boolean>) => {
+	state.user.subscribe = action.payload;
 
 	handleFullfilled(state);
 };
 
-const handleRefresh = (state: AuthState, { payload }) => {
-	state.user = { ...state.user, ...payload };
+const handleRefresh = (state: AuthState, action: PayloadAction<Omit<SignupResponce, "token">>) => {
+	state.user = { ...state.user, ...action.payload };
 	state.isLoggedIn = true;
 
 	handleFullfilled(state);
@@ -58,7 +58,7 @@ export const handleLogout = (state: AuthState) => {
 	state.user = {
 		name: "",
 		email: "",
-		id: "",
+		// id: "",
 		avatarURL: "",
 		subscribe: false,
 	};
