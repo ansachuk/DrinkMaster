@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { login, signup, logout, refresh, update, subscribe } from "../operations/authOperations";
 import { handlePending, handleRejected, handleFullfilled } from "../utils";
-import { AuthState, LoginRespoce, SignupResponce, UpdateResponce, User } from "@/@types/authTypes";
+import { AuthState, LoginRespoce, SignupResponce, UpdateResponce } from "@/@types/authTypes";
 
 const initialState: AuthState = {
 	user: {

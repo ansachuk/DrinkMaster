@@ -18,7 +18,9 @@ import {
 	popular,
 } from "../operations/recipiesOperations";
 
-const initialState = {
+import { RecipeState } from "@/@types/RecipesTypes";
+
+const initialState: RecipeState = {
 	mainCocktails: [],
 	byCategory: [],
 	byID: [],
@@ -44,6 +46,7 @@ const recepiesSlice = createSlice({
 	// 		state.page = payload;
 	// 	},
 	// },
+	reducers: {},
 	extraReducers: builder => {
 		builder
 			.addCase(allCategory.fulfilled, (state, { payload }) => {
