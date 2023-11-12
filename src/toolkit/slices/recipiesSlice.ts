@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { handlePending, handleRejected, handleFullfilled } from "../utils";
 import {
@@ -18,7 +18,7 @@ import {
 	popular,
 } from "../operations/recipiesOperations";
 
-import { RecipeState } from "@/@types/RecipesTypes";
+import { Category, Glass, MainPageResponce, RecipeState } from "@/@types/RecipesTypes";
 
 const initialState: RecipeState = {
 	mainCocktails: [],
@@ -49,60 +49,61 @@ const recepiesSlice = createSlice({
 	reducers: {},
 	extraReducers: builder => {
 		builder
-			.addCase(allCategory.fulfilled, (state, { payload }) => {
-				state.categories = payload;
+			.addCase(allCategory.fulfilled, (state, action: PayloadAction<Category[]>) => {
+				state.categories = action.payload;
 				handleFullfilled(state);
 			})
-			.addCase(mainPage.fulfilled, (state, { payload }) => {
-				state.mainCocktails = payload;
+
+			.addCase(mainPage.fulfilled, (state, action: PayloadAction<MainPageResponce>) => {
+				state.mainCocktails = action.payload;
 				handleFullfilled(state);
 			})
-			.addCase(glasses.fulfilled, (state, { payload }) => {
-				state.glasses = payload;
+			.addCase(glasses.fulfilled, (state, action: PayloadAction<Glass[]>) => {
+				state.glasses = action.payload;
 				handleFullfilled(state);
 			})
-			.addCase(byCategory.fulfilled, (state, { payload }) => {
+			.addCase(byCategory.fulfilled, (state, action: PayloadAction) => {
 				state.byCategory = payload;
 				handleFullfilled(state);
 			})
-			.addCase(byID.fulfilled, (state, { payload }) => {
+			.addCase(byID.fulfilled, (state, action: PayloadAction) => {
 				state.byID = payload;
 				handleFullfilled(state);
 			})
-			.addCase(search.fulfilled, (state, { payload }) => {
+			.addCase(search.fulfilled, (state, action: PayloadAction) => {
 				state.searchResults = payload.result;
 				state.totalHits = payload.totalHits;
 				handleFullfilled(state);
 			})
-			.addCase(allIngredients.fulfilled, (state, { payload }) => {
+			.addCase(allIngredients.fulfilled, (state, action: PayloadAction) => {
 				state.ingredients = payload;
 				handleFullfilled(state);
 			})
-			.addCase(own.fulfilled, (state, { payload }) => {
+			.addCase(own.fulfilled, (state, action: PayloadAction) => {
 				state.own = payload;
 				handleFullfilled(state);
 			})
-			.addCase(add.fulfilled, (state, { payload }) => {
+			.addCase(add.fulfilled, (state, action: PayloadAction) => {
 				state.own.push(payload);
 				handleFullfilled(state);
 			})
-			.addCase(remove.fulfilled, (state, { payload }) => {
+			.addCase(remove.fulfilled, (state, action: PayloadAction) => {
 				state.own = state.own.filter(({ _id }) => _id !== payload.deletedRecipe._id);
 				handleFullfilled(state);
 			})
-			.addCase(favorite.fulfilled, (state, { payload }) => {
+			.addCase(favorite.fulfilled, (state, action: PayloadAction) => {
 				state.favorite = payload;
 				handleFullfilled(state);
 			})
-			.addCase(addToFavorite.fulfilled, (state, { payload }) => {
+			.addCase(addToFavorite.fulfilled, (state, action: PayloadAction) => {
 				state.favorite.result.push(payload);
 				handleFullfilled(state);
 			})
-			.addCase(removeFromFavorite.fulfilled, (state, { payload }) => {
+			.addCase(removeFromFavorite.fulfilled, (state, action: PayloadAction) => {
 				state.favorite.result = state.favorite.result.filter(({ _id }) => _id !== payload.result._id);
 				handleFullfilled(state);
 			})
-			.addCase(popular.fulfilled, (state, { payload }) => {
+			.addCase(popular.fulfilled, (state, action: PayloadAction) => {
 				state.popular = payload;
 				handleFullfilled(state);
 			})
