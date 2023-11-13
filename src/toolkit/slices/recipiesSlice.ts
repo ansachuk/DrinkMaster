@@ -18,7 +18,8 @@ import {
 	popular,
 } from "../operations/recipiesOperations";
 
-import { Category, Glass, MainPageResponce, RecipeState } from "@/@types/RecipesTypes";
+import { MainPageResponce, RecipeState } from "@/@types/RecipesTypes";
+import { Category, Glass } from "@/@types/staticTypes";
 
 const initialState: RecipeState = {
 	mainCocktails: [],
@@ -53,7 +54,6 @@ const recepiesSlice = createSlice({
 				state.categories = action.payload;
 				handleFullfilled(state);
 			})
-
 			.addCase(mainPage.fulfilled, (state, action: PayloadAction<MainPageResponce>) => {
 				state.mainCocktails = action.payload;
 				handleFullfilled(state);
@@ -62,6 +62,7 @@ const recepiesSlice = createSlice({
 				state.glasses = action.payload;
 				handleFullfilled(state);
 			})
+
 			.addCase(byCategory.fulfilled, (state, action: PayloadAction) => {
 				state.byCategory = payload;
 				handleFullfilled(state);
