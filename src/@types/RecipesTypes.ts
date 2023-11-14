@@ -36,13 +36,13 @@ export type Cocktail = {
 export type RecipeState = {
 	mainCocktails: MainPageResponce;
 	byCategory: Array<Cocktail>;
-	byID: Array<Cocktail>;
-	favorite: Array<Cocktail>;
+	byID: Cocktail | null;
+	favorite: CocktailFetchResult;
 	own: Array<Cocktail>;
 	popular: Array<Cocktail>;
 	categories: Array<Category>;
 	glasses: Array<Glass>;
-	ingredients: Array<Cocktail>;
+	ingredients: Array<Ingredient>;
 	searchResults: Array<Cocktail>;
 	isLoading: boolean;
 	totalHits: number;
@@ -55,3 +55,16 @@ export type MainPageResponce = Array<{
 	_id: string;
 	recipes: Array<Cocktail>;
 }>;
+
+type CocktailArray = Array<Cocktail>;
+type CocktailFetchResult = Pick<RecipeState, "limit" | "totalHits" | "page"> & { result: Array<Cocktail> };
+
+export type AllIngredientsResponce = Array<Ingredient>;
+export type RemoveOwnResponce = { deletedRecipe: Cocktail };
+export type RemoveFavoriteResponce = { result: Cocktail };
+
+export type PopularResponce = CocktailArray;
+export type OwnResponce = CocktailArray;
+
+export type FavoriteResponce = CocktailFetchResult;
+export type SearchResponce = CocktailFetchResult;

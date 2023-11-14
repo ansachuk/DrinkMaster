@@ -18,14 +18,30 @@ import {
 	popular,
 } from "../operations/recipiesOperations";
 
-import { MainPageResponce, RecipeState } from "@/@types/RecipesTypes";
+import {
+	AllIngredientsResponce,
+	Cocktail,
+	FavoriteResponce,
+	MainPageResponce,
+	OwnResponce,
+	PopularResponce,
+	RecipeState,
+	RemoveFavoriteResponce,
+	RemoveOwnResponce,
+	SearchResponce,
+} from "@/@types/RecipesTypes";
 import { Category, Glass } from "@/@types/staticTypes";
 
 const initialState: RecipeState = {
 	mainCocktails: [],
 	byCategory: [],
-	byID: [],
-	favorite: [],
+	byID: null,
+	favorite: {
+		page: 1,
+		totalHits: 0,
+		limit: 9,
+		result: [],
+	},
 	own: [],
 	popular: [],
 	categories: [],
@@ -62,50 +78,55 @@ const recepiesSlice = createSlice({
 				state.glasses = action.payload;
 				handleFullfilled(state);
 			})
-
-			.addCase(byCategory.fulfilled, (state, action: PayloadAction) => {
+			.addCase(byCategory.fulfilled, (state, { payload }) => {
 				state.byCategory = payload;
 				handleFullfilled(state);
 			})
-			.addCase(byID.fulfilled, (state, action: PayloadAction) => {
-				state.byID = payload;
+			.addCase(byID.fulfilled, (state, action: PayloadAction<Cocktail>) => {
+				state.byID = action.payload;
 				handleFullfilled(state);
 			})
-			.addCase(search.fulfilled, (state, action: PayloadAction) => {
-				state.searchResults = payload.result;
-				state.totalHits = payload.totalHits;
+			.addCase(search.fulfilled, (state, action: PayloadAction<SearchResponce>) => {
+				const { result, totalHits } = action.payload;
+				state.searchResults = result;
+				state.totalHits = totalHits;
 				handleFullfilled(state);
 			})
-			.addCase(allIngredients.fulfilled, (state, action: PayloadAction) => {
-				state.ingredients = payload;
+			.addCase(allIngredients.fulfilled, (state, action: PayloadAction<AllIngredientsResponce>) => {
+				state.ingredients = action.payload;
 				handleFullfilled(state);
 			})
-			.addCase(own.fulfilled, (state, action: PayloadAction) => {
-				state.own = payload;
+			.addCase(own.fulfilled, (state, action: PayloadAction<OwnResponce>) => {
+				state.own = action.payload;
 				handleFullfilled(state);
 			})
-			.addCase(add.fulfilled, (state, action: PayloadAction) => {
-				state.own.push(payload);
+			.addCase(add.fulfilled, (state, action: PayloadAction<Cocktail>) => {
+				state.own.push(action.payload);
 				handleFullfilled(state);
 			})
-			.addCase(remove.fulfilled, (state, action: PayloadAction) => {
-				state.own = state.own.filter(({ _id }) => _id !== payload.deletedRecipe._id);
+			.addCase(remove.fulfilled, (state, action: PayloadAction<RemoveOwnResponce>) => {
+				const { deletedRecipe } = action.payload;
+				state.own = state.own.filter(({ _id }) => _id !== deletedRecipe._id);
 				handleFullfilled(state);
 			})
-			.addCase(favorite.fulfilled, (state, action: PayloadAction) => {
-				state.favorite = payload;
+			.addCase(favorite.fulfilled, (state, action: PayloadAction<FavoriteResponce>) => {
+				state.favorite = action.payload;
 				handleFullfilled(state);
 			})
-			.addCase(addToFavorite.fulfilled, (state, action: PayloadAction) => {
-				state.favorite.result.push(payload);
+			.addCase(addToFavorite.fulfilled, (state, action: PayloadAction<Cocktail>) => {
+				state.favorite.result.push(action.payload);
+				state.favorite.totalHits += 1;
 				handleFullfilled(state);
 			})
-			.addCase(removeFromFavorite.fulfilled, (state, action: PayloadAction) => {
-				state.favorite.result = state.favorite.result.filter(({ _id }) => _id !== payload.result._id);
+			.addCase(removeFromFavorite.fulfilled, (state, action: PayloadAction<RemoveFavoriteResponce>) => {
+				const { result } = action.payload;
+				state.favorite.result = state.favorite.result.filter(({ _id }) => _id !== result._id);
 				handleFullfilled(state);
+
+				state.favorite.totalHits -= 1;
 			})
-			.addCase(popular.fulfilled, (state, action: PayloadAction) => {
-				state.popular = payload;
+			.addCase(popular.fulfilled, (state, action: PayloadAction<PopularResponce>) => {
+				state.popular = action.payload;
 				handleFullfilled(state);
 			})
 
