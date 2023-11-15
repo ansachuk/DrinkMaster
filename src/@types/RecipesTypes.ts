@@ -1,5 +1,13 @@
 import { Category, Glass } from "./staticTypes";
 
+export type Search = {
+	category: string;
+	ingredient: string;
+	searchWord: string;
+	page: number;
+	limit: number;
+};
+
 export type Ingredient = {
 	_id?: string;
 	title: string;

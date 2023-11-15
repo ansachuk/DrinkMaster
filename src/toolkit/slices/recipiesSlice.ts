@@ -78,10 +78,12 @@ const recepiesSlice = createSlice({
 				state.glasses = action.payload;
 				handleFullfilled(state);
 			})
+			// !===========
 			.addCase(byCategory.fulfilled, (state, { payload }) => {
 				state.byCategory = payload;
 				handleFullfilled(state);
 			})
+			// !===========
 			.addCase(byID.fulfilled, (state, action: PayloadAction<Cocktail>) => {
 				state.byID = action.payload;
 				handleFullfilled(state);
