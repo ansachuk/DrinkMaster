@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Manrope } from "next/font/google";
 
 import "../scss/global.scss";
+
+const font = Manrope({
+	weight: ["400", "500", "600"],
+});
 
 export const metadata: Metadata = {
 	title: "DrinkMaster",
@@ -13,23 +17,7 @@ type Props = { children: React.ReactNode };
 export default function RootLayout({ children }: Props) {
 	return (
 		<html lang="en">
-			<body>
-				{/* <header>
-					<Link href="/">home</Link>
-					<br />
-					<Link href="/welcome">welcome</Link>
-					<br />
-					<Link href="/add">add</Link>
-					<br />
-					<Link href="/drinks">drinks</Link>
-					<br />
-					<Link href="/favorite">favorite</Link>
-					<br />
-					<Link href="/my">my</Link>
-				</header> */}
-
-				{children}
-			</body>
+			<body className={font.className}>{children}</body>
 		</html>
 	);
 }
