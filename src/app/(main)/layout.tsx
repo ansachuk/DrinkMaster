@@ -2,12 +2,10 @@ import React from "react";
 import Link from "next/link";
 import { Logo } from "@/images/svg";
 
-import css from "./test.module.scss";
-
 export default function MainLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<main>
-			<Logo className={css.logo} />
+			<Logo />
 			Header
 			<br />
 			<Link href="/">Home</Link>
@@ -19,7 +17,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 			<Link href="/favorites">Favorites</Link>
 			<br />
 			<Link href="/recipe/1">recipe</Link>
-			<div className={css.children}>{children}</div>
+			<div>{children}</div>
 			Footer
 		</main>
 	);

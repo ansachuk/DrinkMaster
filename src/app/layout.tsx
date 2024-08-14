@@ -4,8 +4,6 @@ import React from "react";
 import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import "@/scss/globals.scss";
-
 // const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
