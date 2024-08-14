@@ -3,6 +3,7 @@ import React from "react";
 
 import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import "@/globals.css";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" className="bg-main-black text-zinc-50">
 			<body>
 				{children}
 				<SpeedInsights />
