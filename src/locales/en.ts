@@ -1,3 +1,5 @@
 export default {
-	auth: {},
+	auth: {
+		hello: "Hello World!",
+	},
 } as const;
