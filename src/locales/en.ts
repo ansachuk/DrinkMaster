@@ -1,4 +1,3 @@
-// locales/en.ts
 export default {
-	auth: "",
+	auth: {},
 } as const;
