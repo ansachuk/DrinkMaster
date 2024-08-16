@@ -4,6 +4,8 @@ import React from "react";
 import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@/globals.css";
+import { getCurrentLocale } from "@/locales/server";
+import Balls from "@/components/Balls";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +25,11 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const locale = getCurrentLocale();
 	return (
-		<html lang="en" className="bg-main-black text-zinc-50">
-			<body>
+		<html lang={locale}>
+			<body className="bg-main-black text-zinc-50 h-full scroll-smooth">
+				<Balls />
 				{children}
 				<SpeedInsights />
 			</body>
