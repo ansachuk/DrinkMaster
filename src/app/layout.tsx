@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@/globals.css";
 import { getCurrentLocale } from "@/locales/server";
-import { MainBalls } from "@/components/Balls";
+import { MainBalls, FooterBalls } from "@/components/Balls";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +31,7 @@ export default function RootLayout({
 			<body className="bg-main-black text-zinc-50 h-full scroll-smooth">
 				<MainBalls />
 				{children}
+				<FooterBalls />
 				<SpeedInsights />
 			</body>
 		</html>
