@@ -3,9 +3,9 @@ import React from "react";
 
 import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import "@/globals.css";
 import { getCurrentLocale } from "@/locales/server";
 import { MainBalls, FooterBalls } from "@/components/Balls";
+import "@/globals.css";
 
 // const inter = Inter({ subsets: ["latin"] });
 
