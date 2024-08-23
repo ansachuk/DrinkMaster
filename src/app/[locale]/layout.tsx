@@ -1,5 +1,5 @@
 import React from "react";
-// import { Inter } from "next/font/google";
+import { Manrope } from "next/font/google";
 
 import type { Metadata } from "next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -7,7 +7,10 @@ import { getCurrentLocale } from "@/locales/server";
 import { MainBalls, FooterBalls } from "@/components/Balls";
 import "@/globals.css";
 
-// const inter = Inter({ subsets: ["latin"] });
+export const manrope = Manrope({
+	weight: ["400", "500", "600"],
+	subsets: ["cyrillic", "latin"],
+});
 
 export const metadata: Metadata = {
 	title: "DrinkMaster",
@@ -28,7 +31,7 @@ export default function RootLayout({
 	const locale = getCurrentLocale();
 	return (
 		<html lang={locale}>
-			<body className="bg-main-black text-zinc-50 h-full scroll-smooth">
+			<body className={`bg-main-black text-zinc-50 h-full scroll-smooth ${manrope.className}`}>
 				<MainBalls />
 				{children}
 				<FooterBalls />
