@@ -1,8 +1,8 @@
 import React from "react";
 import { Manrope } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import type { Metadata } from "next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getCurrentLocale } from "@/locales/server";
 import { MainBalls, FooterBalls } from "@/components/Balls";
 import "@/globals.css";
