@@ -1,7 +1,6 @@
 {
 	"name": "drinkmaster",
 	"version": "2.1.0",
-	"private": false,
 	"license": "MIT",
 	"scripts": {
 		"start": "next dev",
@@ -36,5 +35,6 @@
 		"eslint-plugin-react-refresh": "^0.4.3",
 		"postcss": "^8.4.45",
 		"typescript": "^5.5.0"
-	}
+	},
+	"packageManager": "yarn@4.5.0"
 }
