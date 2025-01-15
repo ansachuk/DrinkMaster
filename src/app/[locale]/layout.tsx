@@ -7,7 +7,7 @@ import { getCurrentLocale } from "@/locales/server";
 import { MainBalls, FooterBalls } from "@/components/Balls";
 import "@/globals.css";
 
-export const manrope = Manrope({
+const manrope = Manrope({
 	weight: ["400", "500", "600"],
 	subsets: ["cyrillic", "latin"],
 });
@@ -23,12 +23,12 @@ export const metadata: Metadata = {
 	],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const locale = getCurrentLocale();
+	const locale = await getCurrentLocale();
 	return (
 		<html lang={locale}>
 			<body className={`bg-main-black text-zinc-50 h-full scroll-smooth ${manrope.className}`}>
