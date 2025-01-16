@@ -8,6 +8,8 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 			<Logo />
 			Header
 			<br />
+			<Link href="/welcome">Welcome</Link>
+			<br />
 			<Link href="/">Home</Link>
 			<br />
 			<Link href="/add">Add</Link>

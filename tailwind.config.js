@@ -11,6 +11,7 @@ module.exports = {
 		extend: {
 			colors: {
 				"main-black": "#0a0a11",
+				"main-black-lg": "#08070b",
 			},
 			screens: {
 				sm: "375px",

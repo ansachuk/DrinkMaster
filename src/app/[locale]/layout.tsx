@@ -31,7 +31,7 @@ export default async function RootLayout({
 	const locale = await getCurrentLocale();
 	return (
 		<html lang={locale}>
-			<body className={`bg-main-black text-zinc-50 h-full scroll-smooth ${manrope.className}`}>
+			<body className={`bg-main-black lg:bg-main-black-lg text-zinc-50 h-full scroll-smooth ${manrope.className}`}>
 				<MainBalls />
 				{children}
 				<FooterBalls />
