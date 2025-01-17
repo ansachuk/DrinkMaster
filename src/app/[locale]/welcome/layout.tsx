@@ -20,6 +20,7 @@ export default function WelcomeLayout({ children }: { children: React.ReactNode 
 					width={587}
 					height={812}
 					priority={true}
+					placeholder="blur"
 					style={{ width: "auto" }}
 					className=" h-[100vh] md:hidden"
 				/>
@@ -29,6 +30,7 @@ export default function WelcomeLayout({ children }: { children: React.ReactNode 
 					quality={100}
 					src={welcomeMdImage}
 					priority={true}
+					placeholder="blur"
 					style={{ width: "auto" }}
 					className=" h-[100vh] hidden md:block lg:hidden"
 				/>
@@ -39,6 +41,7 @@ export default function WelcomeLayout({ children }: { children: React.ReactNode 
 					src={welcomeLgImage}
 					priority={true}
 					style={{ width: "auto" }}
+					placeholder="blur"
 					className=" h-[100vh] hidden lg:block"
 				/>
 			</div>
