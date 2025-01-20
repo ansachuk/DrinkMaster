@@ -18,7 +18,7 @@ export default function MainButton({
 	type?: "button" | "submit" | "reset";
 	onClick?: () => any;
 }) {
-	const className = `py-3.5 px-10 rounded-[42px] border-[1px] border-gray-100/20 transition-colors duration-300 text-sm font-semibold md:text-base ${
+	const className = `py-3.5 px-10 rounded-[42px] border border-gray-100/20 transition-colors duration-300 text-sm font-semibold md:text-base cursor-pointer ${
 		variant === "filled"
 			? "bg-gray-100 text-main-black hover:bg-transparent hover:text-white"
 			: "bg-transparent text-zinc-50 hover:bg-gray-100 hover:text-main-black"

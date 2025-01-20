@@ -4,7 +4,7 @@ import UserSettings from "./UserSettings";
 
 export default function Header() {
 	return (
-		<header className="py-5 border-b border-b-zinc-50/20">
+		<header className="py-5 border-b border-b-zinc-50/20 relative">
 			<Container customStyles="flex justify-between items-center">
 				<Logo />
 				<UserSettings />

@@ -29,6 +29,7 @@ export default {
 			colors: {
 				"main-black": "#0a0a11",
 				"main-black-lg": "#08070b",
+				accent: "#161F37",
 			},
 			screens: {
 				sm: "375px",
