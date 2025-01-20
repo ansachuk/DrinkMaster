@@ -9,14 +9,14 @@ export default function MainButton({
 	customStyles = "",
 	href = "",
 	type = "button",
-	onClick = () => {},
+	onClick,
 }: {
 	children: React.ReactNode;
 	variant?: "filled" | "outlined";
 	customStyles?: string;
 	href?: string;
 	type?: "button" | "submit" | "reset";
-	onClick?: () => any;
+	onClick?: React.MouseEventHandler;
 }) {
 	const className = `py-3.5 px-10 rounded-[42px] border border-gray-100/20 transition-colors duration-300 text-sm font-semibold md:text-base cursor-pointer ${
 		variant === "filled"
